@@ -47,11 +47,14 @@ def makeV1(session):
 
     # (f) selection of aggregate functions
     agg1 = group1.agg(
-        sum("cs_sales_price").alias("sum_sales"),
+        sum("cs_sales_price") \
+            .alias("sum_sales"),
         avg(sum("cs_sales_price")) \
             .over(avg_monthly_sales_window) \
             .alias("avg_monthly_sales"),
-        rank().over(rank_window).alias("rn"))
+        rank() \
+            .over(rank_window) \
+            .alias("rn"))
 
     return agg1
 
